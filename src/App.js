@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import DivOne from './components/DivOne'
 
 export class App extends Component {
   constructor (){
@@ -32,7 +33,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <h3 onClick={()=>this.changeIt(this.state.tardis.name)}>{this.state.tardis.name}</h3>
+        <DivOne tardis={this.state.tardis} changeIt={()=>this.changeIt(this.state.tardis.name)}/>
       </div>
     )
   }
