@@ -1,42 +1,45 @@
-import React, { Component } from 'react'
-import DivOne from './components/DivOne'
+import React, { Component } from 'react';
+import DivOne from './components/DivOne';
 
-export class App extends Component {
-  constructor (){
-    super()
-    this.state= {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       tardis: {
-        name: 'Time and Relative Dimension in Space',
-        caps: false,
-      }
-    }
+        tardis1: {
+          name: 'Time and Relative Dimension in Space',
+          caps: false,
+        },
+        tardis2: {
+          name: 'Time and Relative Dimension in Space',
+          caps: false,
+        },
+      },
+    };
   }
-
-  changeIt (text) {
-    if (this.state.tardis.caps) {
+  changeIt = (tardisNumber) => {
+    const tardis = this.state.tardis;
+    if (this.state.tardis[tardisNumber].caps) {
+      tardis[tardisNumber].name = tardis[tardisNumber].name.toLowerCase();
+      tardis[tardisNumber].caps = false;
       this.setState({
-        tardis: {
-          name: text.toLowerCase(),
-          caps: false
-        }
-      })
+        tardis: tardis,
+      });
     } else {
+      tardis[tardisNumber].name = tardis[tardisNumber].name.toUpperCase();
+      tardis[tardisNumber].caps = true;
       this.setState({
-        tardis: {
-          name: text.toUpperCase(),
-          caps: true
-        }
-      })
+        tardis: tardis,
+      });
     }
-  }
-
+  };
   render() {
     return (
       <div>
-        <DivOne tardis={this.state.tardis} changeIt={()=>this.changeIt(this.state.tardis.name)}/>
+        <DivOne changeText={this.changeIt} tardis={this.state.tardis} />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
